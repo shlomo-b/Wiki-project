@@ -1,0 +1,10 @@
+external-secrets:
+  enabled: true
+  replicaCount: 1
+  installCRDs: true
+  scopedRBAC: true
+  serviceAccount:
+    create: true
+    name: external-secrets
+    annotations:
+      eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/external-secrets-role

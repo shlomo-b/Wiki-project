@@ -1,0 +1,8 @@
+clusterName: my-cluster
+serviceAccount:
+  create: true
+  name: aws-load-balancer-controller
+
+replicaCount: 2
+region: us-east-1
+ingressClass: alb

@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aws-alb-controller
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://aws.github.io/eks-charts
+    chart: aws-load-balancer-controller
+    targetRevision: 1.13.2
+    helm:
+      valueFiles:
+        - app-of-apps/chart-aws-alb-controller/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: aws-alb-controller
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true

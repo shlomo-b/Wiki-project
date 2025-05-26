@@ -38,3 +38,6 @@ terraform.rc
 
 # ignore file terraform.lock.hcl
 main-infra/.terraform.lock.hcl
+
+# ignore files argo-cd
+argocd/secret-sso.yml
