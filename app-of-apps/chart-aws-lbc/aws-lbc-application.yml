@@ -11,7 +11,7 @@ spec:
     targetRevision: 1.13.2
     helm:
       valueFiles:
-        - app-of-apps/chart-aws-alb-controller/values.yaml
+        - app-of-apps/chart-aws-lbc/values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: aws-alb-controller

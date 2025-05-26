@@ -65,7 +65,7 @@ variable "cluster_name" {
 }
 
 variable "cluster_version" {
-  default = "1.31"
+  default = "1.32"
   type = string
 }
 
