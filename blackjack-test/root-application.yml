@@ -6,8 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/shlomo-b/Shop-Online.git
-    path: apps/blackjack
+    repoURL: https://github.com/shlomo-b/Wiki-project.git
+    path: blackjack-test
+    targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
     namespace: blackjack
