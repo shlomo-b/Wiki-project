@@ -12,9 +12,11 @@ sources:
   - ingress                  # Source is ingress, used to discover ALB and create DNS records
 domainFilters:
   - spider-shlomo.com        # Domain to manage in Route 53
-logLevel: debug              # Logging level
-txtOwnerId: ""               # Empty means no TXT record management
+logLevel: debug 
+txtOwnerId: "" 
 serviceAccount:
-  create: true               # Create a dedicated service account
+  create: true 
   name: external-dns-service-account
-region: us-east-1            # AWS region
+region: us-east-1
+managedRecordTypesFilters:
+  - A
