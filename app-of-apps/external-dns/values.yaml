@@ -18,7 +18,3 @@ serviceAccount:
   create: true               # Create a dedicated service account
   name: external-dns-service-account
 region: us-east-1            # AWS region
-image:
-  registry: docker.io
-  repository: bitnami/external-dns
-  tag: 0.14.0-debian-11-r4

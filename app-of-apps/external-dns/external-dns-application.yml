@@ -9,9 +9,9 @@ spec:
     - repoURL: https://github.com/shlomo-b/Wiki-project.git
       targetRevision: HEAD
       ref: values
-    - repoURL: https://charts.bitnami.com/bitnami
+    - repoURL: https://charts.bitnami.com/bitnami/charts
       chart:  external-dns
-      targetRevision:  8.7.12
+      targetRevision: 8.7.12
       helm:
         valueFiles:
           - $values/app-of-apps/external-dns/values.yaml
