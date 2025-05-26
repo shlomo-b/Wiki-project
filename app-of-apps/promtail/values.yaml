@@ -8,8 +8,8 @@ promtail:
     logFormat: logfm
     logLevel: info
     serverPort: 3101
-    clients:
-      - url: http://10.90.100.251:3100/loki/api/v1/push # my loki server on on-premises
+    # clients:
+    #   - url: http://10.90.100.251:3100/loki/api/v1/push # my loki server on on-premises
   sidecar:
     configReloader:
       enabled: false
