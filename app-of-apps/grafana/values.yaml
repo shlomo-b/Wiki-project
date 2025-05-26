@@ -27,7 +27,7 @@ datasources:
       - name: prometheus
         type: prometheus
         access: proxy
-        url: http://prometheus-server:9090
+        url: prometheus-server:9090
 
 service:
   enabled: true
