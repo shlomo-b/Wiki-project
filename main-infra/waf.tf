@@ -131,22 +131,4 @@
 #   regular_expression {
 #     regex_string = "^/presentation"
 #   }
-#   regular_expression {
-#     regex_string = "^/metrics"
-#   }
-#   regular_expression {
-#     regex_string = "^/api/login"
-#   }
-#   regular_expression {
-#     regex_string = "^/api/register"
-#   }
-#   regular_expression {
-#     regex_string = "^/api/products"
-#   }
-#   regular_expression {
-#     regex_string = "^/api/users"
-#   }
-#   regular_expression {
-#     regex_string = "^/add-product"
-#   }
 # }

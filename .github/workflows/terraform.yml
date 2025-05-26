@@ -89,15 +89,18 @@ jobs:
           helm repo add argo https://argoproj.github.io/argo-helm
           helm repo update
           if ! helm list -n argocd | grep -q prod-argocd; then
-            echo "ArgoCD is not installed. Installing..."
+            echo "ArgoCD is not installed. Installing."
             helm install prod-argocd argo/argo-cd --namespace argocd --create-namespace --version 7.7.23
           else
             echo "ArgoCD is already installed. Skipping installation."
           fi
-        #  kubectl apply -f repo.yml
-          sleep 45
-        #  kubectl apply -f root-application.yaml
-      working-directory: ./app-of-apps
+    # - name: apply repott and app-of-apps
+    #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    #   run: |
+    #     kubectl apply -f repo.yml
+    #     kubectl apply -f monitoring-project.yml
+    #     kubectl apply -f root-application.yaml
+    #   working-directory: ./app-of-apps    
       
       
     
