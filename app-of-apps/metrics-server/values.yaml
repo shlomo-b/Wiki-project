@@ -11,3 +11,5 @@ metrics-server:
       memory: 25Mi
   service:
     type: ClusterIP    
+  apiService:
+    create: true  
