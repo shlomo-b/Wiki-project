@@ -1,0 +1,20 @@
+replicaCount: 1
+provider: aws
+
+aws:
+  zoneType: public           # The zone type is public
+  name: external-dns         # The name of the external DNS
+  preferCNAME: false         # Prefer A records (IP) instead of CNAME
+
+policy: upsert-only          # Only create or update records, don't delete
+registry: noop               # No operation registry, disables TXT records for ownership
+sources:
+  - ingress                  # Source is ingress, used to discover ALB and create DNS records
+domainFilters:
+  - spider-shlomo.com        # Domain to manage in Route 53
+logLevel: debug              # Logging level
+txtOwnerId: ""               # Empty means no TXT record management
+serviceAccount:
+  create: true               # Create a dedicated service account
+  name: external-dns-service-account
+region: us-east-1            # AWS region
