@@ -28,55 +28,42 @@ spec:
               cpu: 200m
               memory: 256Mi
           env:
-          # - name: MONGO_INITDB_ROOT_USERNAME
-          #   valueFrom:
-          #     secretKeyRef:
-          #       name: aws-secret # reference from ExternalSecret
-          #       key: MONGO_INITDB_ROOT_USERNAME
-                
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secret
+                  key: DB_USER
+                  
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secret
+                  key: DB_PASS
 
-          # - name: MONGO_INITDB_ROOT_PASSWORD
-          #   valueFrom:
-          #     secretKeyRef:
-          #       name: aws-secret # reference from ExternalSecret
-          #       key: MONGO_INITDB_ROOT_PASSWORD
-                
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: db-postgres-config
+                  key: POSTGRES_HOST  
+
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: db-postgres-config
+                  key: POSTGRES_PORT
+
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: db-postgres-config
+                  key: POSTGRES_DB    
 
             - name: DB_TYPE
               valueFrom:
                 configMapKeyRef:
                   name: wiki-config-wiki-app
-                  key: DB_TYPE  
-
-            - name: DB_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: wiki-config-wiki-app
-                  key: DB_HOST
-
-            - name: DB_PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: wiki-config-wiki-app
-                  key: DB_PORT
-
-            - name: DB_USER
-              valueFrom:
-                configMapKeyRef:
-                  name: wiki-config-wiki-app
-                  key: DB_USER
-
-            - name: DB_PASS
-              valueFrom:
-                configMapKeyRef:
-                  name: wiki-config-wiki-app
-                  key: DB_PASS
-
-            - name: DB_NAME
-              valueFrom:
-                configMapKeyRef:
-                  name: wiki-config-wiki-app
-                  key: DB_NAME
+                  key: DB_TYPE
+                  
 ---
 apiVersion: v1
 kind: Service

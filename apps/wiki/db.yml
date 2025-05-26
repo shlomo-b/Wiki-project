@@ -30,14 +30,14 @@ spec:
           env:
             - name: POSTGRES_USER
               valueFrom:
-                configMapKeyRef:
-                  name: db-postgres-config
+                secretKeyRef:
+                  name: aws-secret
                   key: POSTGRES_USER
 
             - name: POSTGRES_PASSWORD
               valueFrom:
-                configMapKeyRef:
-                  name: db-postgres-config
+                secretKeyRef:
+                  name: aws-secret
                   key: POSTGRES_PASSWORD
 
             - name: POSTGRES_DB
