@@ -24,7 +24,7 @@ allowedTopologies:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: db-shop-pvc
+  name: db-wiki
   namespace: wiki
   # annotations:
   #   argocd.argoproj.io/sync-warn: "1"

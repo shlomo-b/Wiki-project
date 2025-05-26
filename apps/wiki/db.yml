@@ -49,9 +49,9 @@ spec:
           - name:  postgres-data
             mountPath: /var/lib/postgresql/data
       volumes:
-        - name: db-shop-storage
+        - name: postgres-data
           persistentVolumeClaim:
-            claimName: db-shop-pvc  
+            claimName: db-wiki 
 ---
 apiVersion: v1
 kind: Service
