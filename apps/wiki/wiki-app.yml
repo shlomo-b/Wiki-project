@@ -44,13 +44,13 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: wiki-config-wiki-app
-                  key: POSTGRES_HOST  
+                  key: DB_HOST 
 
             - name: DB_NAME
               valueFrom:
                 configMapKeyRef:
                   name: wiki-config-wiki-app
-                  key: POSTGRES_DB    
+                  key:  DB_NAME   
 
             - name: DB_TYPE
               valueFrom:
@@ -62,7 +62,7 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: wiki-config-wiki-app
-                  key: POSTGRES_PORT
+                  key: DB_PORT
                   
 ---
 apiVersion: v1
