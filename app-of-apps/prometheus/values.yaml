@@ -14,9 +14,9 @@ server:
     type: ClusterIP
     targetPort: 3000
 
-  persistentVolume:
-    enabled: true
-    size: 10Gi
+  # persistentVolume:
+  #   enabled: true
+  #   size: 10Gi
 
 serverFiles:
   prometheus.yml:

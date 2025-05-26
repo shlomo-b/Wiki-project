@@ -5,11 +5,11 @@ replicas: 2
 adminUser: admin
 adminPassword: strongpassword # temp password
 
-persistence:
-  type: pvc
-  enabled: true
-  size: 10Gi
-  accessMode: ReadWriteOnce
+# persistence:
+#   type: pvc
+#   enabled: true
+#   size: 10Gi
+#   accessMode: ReadWriteOnce
 
 sidecar:
   datasources:
