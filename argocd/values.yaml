@@ -5,33 +5,13 @@ global:
 configs:
   params:
     server.insecure: true
-  cm:
-    # SSO Configuration via AzureAd
-    url: https://argocd.spider-shlomo.com
-    dex.config: |
-        logger:
-          level: debug
-          format: json
-        connectors:
-        - type: saml
-          id: saml
-          name: saml
-          config: 
-            entityIssuer: https://argocd.spider-shlomo.com/api/dex/callback
-            ssoURL: https://login.microsoftonline.com/a2724ae3-73eb-4b45-ba62-f432da279e2c/saml2
-            ca: /etc/dex/certs/ca.crt
-            redirectURI: https://argocd.spider-shlomo.com/api/dex/callback
-            usernameAttr: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name
-            emailAttr: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name
-
 
   # RBAC for application argo cd
   rbac:
     policy.default: role:admin
     policy.csv: |
       p, role:role:admin, *, *, *, allow
-      g, "Shlomo_lab@spider-shlomo.com", role:admin
-      g, "AlinaB@spider-shlomo.com", role:admin
+      g, "admin", role:admin
           
 # Ingress for argo cd  
 server:
@@ -43,24 +23,11 @@ server:
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/target-type: ip
       alb.ingress.kubernetes.io/backend-protocol: HTTP
-      alb.ingress.kubernetes.io/security-groups: sg-09b52735903593977
-      alb.ingress.kubernetes.io/subnets: subnet-06ecc8dce3939bc67,subnet-09e3ef8e74de1afaf # Public subnetbs
+      alb.ingress.kubernetes.io/security-groups: sg-0358ea17bfe228cfa
+      alb.ingress.kubernetes.io/subnets: subnet-06d6c0beedb1be203,subnet-08c1e31bfb36c7be5
       alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":80}, {"HTTPS":443}]'
-      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:148088962203:certificate/9f029f4c-9065-4d87-8394-d509c4aaa132
+      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:148088962203:certificate/28fb3eac-c203-4cdd-9c83-47c04f4b0b23
       alb.ingress.kubernetes.io/ssl-redirect: '443'
     aws:
       serviceType: ClusterIP
       backendProtocolVersion: GRPC
-
-   # responsible for authenticating users | name of the secret certificate    
-dex:
-  volumes:
-    - name: sso-cert
-      secret:
-        secretName: argocd-sso-cert # reference the secret name     
-
-  # Mount the SSO certificate to Dex, making it available in the container     
-  volumeMounts:
-    - name: sso-cert
-      mountPath: /etc/dex/certs
-      readOnly: true
