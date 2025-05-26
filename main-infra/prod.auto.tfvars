@@ -95,28 +95,16 @@ sgs = {
 #---------------acm------------------#
 
 acm = {
-  "blackjack.spider-shlomo.com" = {
-    domain_name   =  ["blackjack.spider-shlomo.com"]
-    tags = {
-      name = "acm-blackjack"
-    }
-  },
    "argocd.spider-shlomo.com" = {
     domain_name   =  ["argocd.spider-shlomo.com"]
     tags = {
       name = "acm-argocd"
     }
   }
-   "shop-online.spider-shlomo.com" = {
-    domain_name   =  ["shop-online.spider-shlomo.com"]
+   "wiki.spider-shlomo.com" = {
+    domain_name   =  ["wiki.spider-shlomo.com"]
     tags = {
-      name = "acm-fronted"
-    }
-  }
-   "backend.spider-shlomo.com" = {
-    domain_name   =  ["backend.spider-shlomo.com"]
-    tags = {
-      name = "acm-backend"
+      name = "acm-wiki"
     }
   }
 }
