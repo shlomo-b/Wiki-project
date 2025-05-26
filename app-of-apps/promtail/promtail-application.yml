@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: monitoring
+  name: promtail
   namespace: argocd
 spec:
-  project: default
+  project: monitoring
   sources:
     - repoURL: https://github.com/shlomo-b/Wiki-project.git
       targetRevision: HEAD
