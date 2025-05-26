@@ -13,7 +13,7 @@ metadata:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
     alb.ingress.kubernetes.io/actions.ssl-redirect: > # redirect to https
       {"type": "redirect", "redirectConfig": { "protocol": "HTTPS", "port": "443", "statusCode": "HTTP_301"}}
-    alb.ingress.kubernetes.io/wafv2-acl-arn: arn:aws:wafv2:us-east-1:148088962203:regional/webacl/wigi-waf/e9eecbd4-2512-4dfa-8a38-015743507551
+  #  alb.ingress.kubernetes.io/wafv2-acl-arn: arn:aws:wafv2:us-east-1:148088962203:regional/webacl/wigi-waf/e9eecbd4-2512-4dfa-8a38-015743507551
                                             
 spec:
   ingressClassName: alb
