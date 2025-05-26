@@ -11,7 +11,7 @@ metadata:
     alb.ingress.kubernetes.io/security-groups: 	sg-0358ea17bfe228cfa
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:148088962203:certificate/f8989a4d-e9ca-4693-8e6b-ec4445931b51
     alb.ingress.kubernetes.io/subnets: subnet-06d6c0beedb1be203,subnet-08c1e31bfb36c7be5
-    alb.ingress.kubernetes.io/listen-ports: '{"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
     alb.ingress.kubernetes.io/actions.ssl-redirect: > # redirect to https
       {"type": "redirect", "redirectConfig": { "protocol": "HTTPS", "port": "443", "statusCode": "HTTP_301"}}
    # alb.ingress.kubernetes.io/wafv2-acl-arn: arn:aws:wafv2:us-east-1:148088962203:regional/webacl/blackjack-waf/6583d044-16e4-4b0c-99fb-20864ea5b1f8
