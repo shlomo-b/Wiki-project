@@ -31,5 +31,5 @@ datasources:
 
 service:
   enabled: true
-  type: NodePort
+  type: ClusterIP
   targetPort: 3000
