@@ -80,7 +80,7 @@ variable "instance_types" {
 }
 
 variable "min_size" {
-  default = 2
+  default = 1
   type = number
 }
 
@@ -90,7 +90,7 @@ variable "max_size" {
 }
 
 variable "desired_size" {
-  default = 2
+  default = 1
   type = number
   
 }

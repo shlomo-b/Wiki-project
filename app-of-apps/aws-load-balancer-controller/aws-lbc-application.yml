@@ -5,13 +5,16 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://aws.github.io/eks-charts
-    chart: aws-load-balancer-controller
-    targetRevision: 1.13.2
-    helm:
-      valueFiles:
-        - aws-load-balancer-controller/values.yaml
+  sources:
+    - repoURL: https://github.com/shlomo-b/Wiki-project.git
+      targetRevision: HEAD
+      ref: values
+    - repoURL: https://aws.github.io/eks-charts
+      chart: aws-load-balancer-controller
+      targetRevision: 1.13.2
+      helm:
+        valueFiles:
+          - $values/app-of-apps/aws-load-balancer-controller/values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: aws-alb-controller
