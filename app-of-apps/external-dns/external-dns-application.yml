@@ -11,7 +11,7 @@ spec:
       ref: values
     - repoURL: https://github.com/bitnami/charts.git
       path: bitnami/external-dns
-      targetRevision: external-dns/8.8.3
+      targetRevision: 8.8.3
       helm:
         valueFiles:
           - "$values/app-of-apps/external-dns/values.yaml"
