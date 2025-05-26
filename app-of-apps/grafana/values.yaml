@@ -1,0 +1,35 @@
+serviceAccount:
+  create: true
+
+replicas: 2
+adminUser: admin
+adminPassword: strongpassword # temp password
+
+persistence:
+  type: pvc
+  enabled: true
+  size: 10Gi
+  accessMode: ReadWriteOnce
+
+sidecar:
+  datasources:
+    enabled: true
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      # - name: Loki
+      #   type: loki
+      #   access: proxy
+      #   url: http://loki-read:3100  
+
+      - name: prometheus
+        type: prometheus
+        access: proxy
+        url: http://prometheus-server:9090
+
+service:
+  enabled: true
+  type: NodePort
+  targetPort: 3000

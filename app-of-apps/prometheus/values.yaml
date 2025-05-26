@@ -1,0 +1,52 @@
+enabled: true
+
+serviceAccount:
+  create: true  
+
+server:
+  global:
+    scrape_interval: 15s
+    scrape_timeout: 10s
+    evaluation_interval: 15s
+
+  service:
+    enabled: true
+    type: ClusterIP
+    targetPort: 3000
+
+  persistentVolume:
+    enabled: true
+    size: 10Gi
+
+serverFiles:
+  prometheus.yml:
+    scrape_configs:
+      - job_name: 'kubernetes-node-exporter'
+        kubernetes_sd_configs:
+          - role: node
+        relabel_configs:
+          - action: labelmap
+            regex: __meta_kubernetes_node_label_(.+)
+          - target_label: __address__
+            replacement: kubernetes.default.svc:9100
+          - source_labels: [__meta_kubernetes_node_name]
+            regex: (.+)
+            target_label: instance
+
+alertmanager:
+  enabled: false
+
+prometheus-pushgateway:
+  enabled: false
+
+kube-state-metrics:
+  enabled: false  
+
+prometheus-node-exporter:
+  enabled: true
+  service:
+    type: ClusterIP
+    port: 9100
+    targetPort: 9100
+    PortName: metrics
+    name: node-exporter
