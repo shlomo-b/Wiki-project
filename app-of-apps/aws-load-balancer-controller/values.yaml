@@ -3,6 +3,6 @@ serviceAccount:
   create: true
   name: aws-load-balancer-controller
 
-replicaCount: 2
+replicaCount: 1
 region: us-east-1
 ingressClass: alb
