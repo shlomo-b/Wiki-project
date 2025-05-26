@@ -44,7 +44,14 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: db-postgres-config
-                  key: POSTGRES_DB   
+                  key: POSTGRES_DB 
+          volumeMounts:
+          - name:  postgres-data
+            mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: db-shop-storage
+          persistentVolumeClaim:
+            claimName: db-shop-pvc  
 ---
 apiVersion: v1
 kind: Service
