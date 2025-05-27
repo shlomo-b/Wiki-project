@@ -9,7 +9,7 @@ spec:
     - repoURL: https://github.com/shlomo-b/Wiki-project.git
       targetRevision: HEAD
       ref: values
-    - repoURL: registry-1.docker.io/bitnamicharts/external-dns
+    - repoURL: registry-1.docker.io/bitnamicharts
       path: external-dns
       targetRevision: 8.8.3
       helm:
