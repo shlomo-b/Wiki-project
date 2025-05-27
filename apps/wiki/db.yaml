@@ -49,7 +49,7 @@ spec:
                 configMapKeyRef:
                   name: db-postgres-config
                   key: POSTGRES_DB
-                  
+
           volumeMounts:
             - name: postgres-data
               mountPath: /var/lib/postgresql/data
@@ -62,3 +62,18 @@ spec:
         resources:
           requests:
             storage: 1Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: wiki
+spec:
+  selector:
+    app: postgres
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
