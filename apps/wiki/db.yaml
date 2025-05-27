@@ -29,6 +29,9 @@ spec:
               cpu: 200m
               memory: 256Mi
           env:
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
@@ -45,12 +48,11 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: db-postgres-config
-                  key: POSTGRES_DB 
-
+                  key: POSTGRES_DB
+                  
           volumeMounts:
-          - name:  postgres-data
-            mountPath: /var/lib/postgresql/data
-
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
   volumeClaimTemplates:
     - metadata: 
         name: postgres-data
@@ -59,18 +61,4 @@ spec:
         storageClassName: gp2
         resources:
           requests:
-            storage: 1Gi      
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: postgres
-  namespace: wiki
-spec:
-  selector:
-    app: postgres
-  type: ClusterIP
-  ports:
-    - protocol: TCP
-      port: 5432
-      targetPort: 5432
+            storage: 1Gi
