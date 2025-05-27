@@ -9,12 +9,12 @@ spec:
     - repoURL: https://github.com/shlomo-b/Wiki-project.git
       targetRevision: HEAD
       ref: values
-    - repoURL: https://github.com/bitnami/charts.git
-      path: bitnami/metrics-server
+    - repoURL: registry-1.docker.io/bitnamicharts
+      chart: metrics-server
       targetRevision: metrics-server/7.4.5
       helm:
         valueFiles:
-          - "$values/app-of-apps/metrics-server/values.yaml"
+          - $values/app-of-apps/metrics-server/values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: metrics-server
