@@ -2,16 +2,16 @@ replicaCount: 1
 provider: aws
 
 aws:
-  zoneType: public           # The zone type is public
-  name: external-dns         # The name of the external DNS
-  preferCNAME: false         # Prefer A records (IP) instead of CNAME
+  zoneType: public          
+  name: external-dns        
+  preferCNAME: false        
 
-policy: upsert-only          # Only create or update records, don't delete
-registry: noop               # No operation registry, disables TXT records for ownership
+policy: upsert-only          
+registry: noop             
 sources:
-  - ingress                  # Source is ingress, used to discover ALB and create DNS records
+  - ingress                
 domainFilters:
-  - spider-shlomo.com        # Domain to manage in Route 53
+  - spider-shlomo.com
 logLevel: debug 
 txtOwnerId: "" 
 serviceAccount:

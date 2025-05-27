@@ -105,8 +105,10 @@ Deploy the wiki application which includes:
 - **Security**: Pulls sensitive credentials (DB_USER, DB_PASS, POSTGRES_USER, POSTGRES_PASSWORD) from AWS via External Secrets
 - **Configuration**: Non-sensitive data (DB_HOST, DB_NAME, DB_TYPE, DB_PORT) stored in ConfigMaps
 - **Load Balancing**: ALB Ingress with SSL certificates
+- **Protection**: AWS WAF to protect the application
 - **Scaling**: Horizontal Pod Autoscaler (HPA) for automatic scaling
 - **Storage**: Persistent volume for PostgreSQL data
+WAF
 
 ```bash
 kubectl apply -f wiki-application.yaml

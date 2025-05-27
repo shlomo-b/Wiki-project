@@ -19,10 +19,10 @@ datasources:
   datasources.yaml:
     apiVersion: 1
     datasources:
-      # - name: Loki
-      #   type: loki
-      #   access: proxy
-      #   url: http://loki-read:3100  
+      - name: Loki
+        type: loki
+        access: proxy
+        url: http://loki-read:3100  
 
       - name: prometheus
         type: prometheus
