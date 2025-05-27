@@ -11,7 +11,7 @@ spec:
       ref: values
     - repoURL: registry-1.docker.io/bitnamicharts
       chart: metrics-server
-      targetRevision: metrics-server/7.4.5
+      targetRevision: metrics-server
       helm:
         valueFiles:
           - $values/app-of-apps/metrics-server/values.yaml
