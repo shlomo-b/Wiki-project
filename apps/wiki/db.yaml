@@ -4,7 +4,7 @@ metadata:
   name: postgres
   namespace: wiki
 spec:
-  serviceName: svc-postgres
+  serviceName: postgres
   selector:
     matchLabels:
       app: postgres
@@ -46,6 +46,7 @@ spec:
                 configMapKeyRef:
                   name: db-postgres-config
                   key: POSTGRES_DB 
+
           volumeMounts:
           - name:  postgres-data
             mountPath: /var/lib/postgresql/data
