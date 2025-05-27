@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: StatefulSet-postgres
+  name: postgres
   namespace: wiki
 spec:
   serviceName: svc-postgres

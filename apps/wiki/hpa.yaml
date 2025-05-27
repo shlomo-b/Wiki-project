@@ -43,7 +43,7 @@ spec:
     # after the deployment runs, the HPA will control the number of pods
     apiVersion: apps/v1
     kind: StatefulSet
-    name: StatefulSet-postgres
+    name: postgres
   minReplicas: 2
   maxReplicas: 5
   metrics:
