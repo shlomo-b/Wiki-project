@@ -56,7 +56,7 @@ spec:
         name: postgres-data
       spec:
         accessModes: [ "ReadWriteOnce" ]
-        storageClassName: ebs-sc
+        storageClassName: gp2
         resources:
           requests:
             storage: 1Gi      
