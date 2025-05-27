@@ -17,17 +17,14 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
 
-
     defaults:
       run:
         shell: bash
         
     steps:
-    # Checkout: Access to my code, which can actually work with it.
     - name: Checkout
       uses: actions/checkout@v4
 
-    # Configure AWS Credentials: It's for communication with AWS using the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -35,13 +32,11 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
         
-    # Setup Terraform CLI: Use the specified version of Terraform
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.5.6
 
-    # Debug Environment: Verify if the AWS credentials and other environment variables are correctly set
     - name: Debug Environment
       run: |
         echo "GitHub Ref: ${{ github.ref }}"
@@ -50,9 +45,8 @@ jobs:
         echo "AWS_SECRET_ACCESS_KEY is set: ${{ secrets.AWS_SECRET_ACCESS_KEY != '' }}"
         terraform version
         aws --version
-      working-directory: ./main-infra  # run the tf files from directory main-infra
+      working-directory: ./main-infra
 
-    # Terraform Init: Sync with the S3 where the terraform.tfstate is stored
     - name: Terraform Init
       run: |
         terraform init \
@@ -62,55 +56,32 @@ jobs:
           -input=false
       working-directory: ./main-infra  
 
-    # Terraform Validate: Validate the Terraform configuration files of the tf 
     - name: Terraform Validate
       run: terraform validate
       working-directory: ./main-infra  
        
-    # Terraform Plan: Generate and show an execution plan
     - name: Terraform Plan
-      run: terraform plan -input=false # -no-color
+      run: terraform plan -input=false
       working-directory: ./main-infra  
     
-    # Terraform Apply: Apply the changes required to reach the desired state of the configuration
     - name: Terraform Apply
-      # It's will be trigger when i push/merge to main branch
-      
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      # run: terraform apply -auto-approve -input=false # -no-color
       working-directory: ./main-infra
       run: |
-        terraform apply -auto-approve # -input=false # -no-color
-        
+        terraform apply -auto-approve
+
     - name: Install ArgoCD (only if not installed)
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: |
         aws eks update-kubeconfig --name my-cluster --region us-east-1
-          helm repo add argo https://argoproj.github.io/argo-helm
-          helm repo update
-          if ! helm list -n argocd | grep -q prod-argocd; then
-            echo "ArgoCD is not installed. Installing."
-            helm install prod-argocd argo/argo-cd --namespace argocd --create-namespace --version 7.7.23
-          else
-            echo "ArgoCD is already installed. Skipping installation."
-          fi
-    # - name: apply repott and app-of-apps
-    #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    #   run: |
-    #     kubectl apply -f repo.yaml
-    #     kubectl apply -f monitoring-project.yaml
-    #     kubectl apply -f root-application.yaml
-    #   working-directory: ./app-of-apps    
-      
-      
-    
-    # - name: Install ClusterSecretStore
-    #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    #   run: |
-    #     aws eks update-kubeconfig --name my-cluster --region us-east-1
-    #      sleep 45
-    #      kubectl apply -f ClusterSecretStore-application.yml
-    #   working-directory: ./apps/ClusterSecretStore
+        helm repo add argo https://argoproj.github.io/argo-helm
+        helm repo update
+        if ! helm list -n argocd | grep -q prod-argocd; then
+          echo "ArgoCD is not installed. Installing."
+          helm install prod-argocd argo/argo-cd --namespace argocd --create-namespace --version 7.7.23
+        else
+          echo "ArgoCD is already installed. Skipping installation."
+        fi
 
     - name: Terraform Output
       run: terraform output

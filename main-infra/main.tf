@@ -4,7 +4,7 @@ module "vpc" {
   for_each                = var.vpcs
   
   source                  = "terraform-aws-modules/vpc/aws"
-  version                 = "5.8.1"
+  version                 = "5.21.0"
 
   name                    = each.key
   cidr                    = each.value.cidr
