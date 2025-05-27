@@ -89,15 +89,22 @@ kubectl apply -f root-application.yaml
 
 ### 5. Deploy ClusterSecretStore
 
-After the App of Apps is deployed, deploy the ClusterSecretStore for External Secrets:
+deploy the ClusterSecretStore for External Secrets inside folder apps:
 
 ```bash
 kubectl apply -f ClusterSecretStore-application.yaml
 ```
+### 6. Deploy manage external-secrets for all applications
+
+Deploy the file secrets-application.yaml inside folder apps:
+
+```bash
+kubectl apply -f secrets-application.yaml
+```
 
 This configures External Secrets to pull credentials from AWS Secrets Manager/Parameter Store.
 
-### 6. Deploy Wiki Application
+### 7. Deploy Wiki Application inside folder apps
 
 Deploy the wiki application which includes:
 - **Frontend**: React application
@@ -118,7 +125,7 @@ kubectl apply -f wiki-application.yaml
 - **Sensitive data** (usernames/passwords): Stored in AWS Secrets Manager and accessed via External Secrets
 - **Non-sensitive data** (hostnames, ports, database names): Stored in Kubernetes ConfigMaps
 
-### 7. Customize ArgoCD (Optional)
+### 8. Customize ArgoCD (Optional)
 
 If you want to customize ArgoCD with specific values:
 
