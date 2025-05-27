@@ -5,7 +5,7 @@ metadata:
     name: wiki-config-wiki-app
 data:
    DB_TYPE: postgres
-   DB_HOST: svc-postgres
+   DB_HOST: postgres
    DB_PORT: "5432"
    DB_NAME: wiki
 
