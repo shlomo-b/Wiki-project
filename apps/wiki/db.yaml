@@ -1,9 +1,10 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: deployment-postgres
+  name: StatefulSet-postgres
   namespace: wiki
 spec:
+  serviceName: svc-postgres
   selector:
     matchLabels:
       app: postgres
@@ -17,7 +18,7 @@ spec:
           image: postgres:15-alpine
           imagePullPolicy: Always
           ports:
-            - name: http
+            - name: postgres
               containerPort: 5432
               protocol: TCP
           resources:
@@ -48,10 +49,16 @@ spec:
           volumeMounts:
           - name:  postgres-data
             mountPath: /var/lib/postgresql/data
-      volumes:
-        - name: postgres-data
-          persistentVolumeClaim:
-            claimName: db-wiki 
+
+  volumeClaimTemplates:
+    - metadata: 
+        name: postgres-data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: ebs-sc
+        resources:
+          requests:
+            storage: 1Gi      
 ---
 apiVersion: v1
 kind: Service

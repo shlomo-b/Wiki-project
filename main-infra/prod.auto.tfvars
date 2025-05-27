@@ -10,15 +10,15 @@ vpcs = {
       name = "vpc-one"
     }
   }
-  vpc-two = {
-    cidr            = "10.20.0.0/16"
-    private_subnets = ["10.20.1.0/24"] # "10.20.2.0/24", "10.200.3.0/24"]
-    public_subnets  = ["10.20.100.0/25"] # "10.2.102.0/27"]
-    azs             = ["us-east-1a","us-east-1b","us-east-1c"]
-    tags = {
-      name = "vpc-two"
-    }
-  }
+  # vpc-two = {
+  #   cidr            = "10.20.0.0/16"
+  #   private_subnets = ["10.20.1.0/24"] # "10.20.2.0/24", "10.200.3.0/24"]
+  #   public_subnets  = ["10.20.100.0/25"] # "10.2.102.0/27"]
+  #   azs             = ["us-east-1a","us-east-1b","us-east-1c"]
+  #   tags = {
+  #     name = "vpc-two"
+  #   }
+  # }
 }
 
 #---------------sgs------------------#
@@ -64,32 +64,32 @@ sgs = {
   }  
   }
 
-  vpc-two = {
-    vpc_key    = "vpc-two"  # This will be used to lookup the VPC ID
-    description = "vpc-two"
+#   vpc-two = {
+#     vpc_key    = "vpc-two"  # This will be used to lookup the VPC ID
+#     description = "vpc-two"
 
-    tags = {
-      name = "vpc-two"
-    }
+#     tags = {
+#       name = "vpc-two"
+#     }
 
-    ingress_cidr_blocks = ["10.30.0.0/16"] # Use the CIDR of vpc-third
-    ingress_with_cidr_blocks = {
-      allow_port_80 = {
-          from_port   = 80
-          to_port     = 80
-          protocol    = "tcp"
-          description = "Allow HTTP"
-          cidr_blocks = "0.0.0.0/0"
-        },
-        allow_port_90 = {
-          from_port   = 90
-          to_port     = 90
-          protocol    = "tcp"
-          description = "Allow HTTP"
-          cidr_blocks = "0.0.0.0/0"
-        }
-  }
- }
+#     ingress_cidr_blocks = ["10.30.0.0/16"] # Use the CIDR of vpc-third
+#     ingress_with_cidr_blocks = {
+#       allow_port_80 = {
+#           from_port   = 80
+#           to_port     = 80
+#           protocol    = "tcp"
+#           description = "Allow HTTP"
+#           cidr_blocks = "0.0.0.0/0"
+#         },
+#         allow_port_90 = {
+#           from_port   = 90
+#           to_port     = 90
+#           protocol    = "tcp"
+#           description = "Allow HTTP"
+#           cidr_blocks = "0.0.0.0/0"
+#         }
+#   }
+#  }
 }
 
 #---------------acm------------------#

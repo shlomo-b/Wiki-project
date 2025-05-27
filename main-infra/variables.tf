@@ -94,18 +94,3 @@ variable "desired_size" {
   type = number
   
 }
-#----------------DB CREDENTIALS------------------#
-
-# variable "MONGO_INITDB_ROOT_USERNAME" {
-#   description = "Database root username"
-#   type        = string
-#   default = "value"
-#   sensitive = true
-# }
-
-# variable "MONGO_INITDB_ROOT_PASSWORD" {
-#   description = "Database root password"
-#   type        = string
-#   sensitive   = true
-#   default = "value"
-# }

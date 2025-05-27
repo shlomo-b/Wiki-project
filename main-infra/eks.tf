@@ -13,11 +13,11 @@ module "eks" {
   cluster_security_group_id = module.sgs["vpc-one"].security_group_id
   
   cluster_addons = {
-    coredns                = {} # coredns its for manage the dns server
-    eks-pod-identity-agent = {} # eks-pod-identity-agent its for manage the pod identity
-    kube-proxy             = {} # kube-proxy its for manage the kube-proxy
-    vpc-cni                = {} # vpc cni its for manage the network and associate IPs to pods
-    aws-ebs-csi-driver     = {} # aws ebs csi driver its for manage the ebs csi driver
+    coredns                = {}
+    eks-pod-identity-agent = {}
+    kube-proxy             = {}
+    vpc-cni                = {}
+    aws-ebs-csi-driver     = {}
   }
 
     vpc_id                   =  module.vpc["vpc-one"].vpc_id
@@ -42,7 +42,6 @@ module "eks" {
 
   eks_managed_node_groups = {
     prod-k8s-nodes = {
-      # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
       ami_type       = "AL2023_x86_64_STANDARD"
       instance_types = var.instance_types
 
@@ -68,7 +67,7 @@ module "eks" {
           policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy" # give the user shlomob access to the cluster
           access_scope = {
             namespaces = []
-            type       = "cluster" # the type of the cluster
+            type       = "cluster"
           }
         }
       }

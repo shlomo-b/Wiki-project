@@ -10,7 +10,7 @@ config:
   logLevel: info
   serverPort: 3101
   clients:
-    - url: http://loki-write:3100/loki/api/v1/push # loki write url
+    - url: http://loki-write:3100/loki/api/v1/push
 sidecar:
   configReloader:
     enabled: false
@@ -25,4 +25,4 @@ sidecar:
 service:
   enabled: true
   type: ClusterIP
-  port: 3101 # the port svc that expose and use for healthcheck
+  port: 3101
