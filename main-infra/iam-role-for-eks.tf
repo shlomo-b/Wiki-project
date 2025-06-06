@@ -24,14 +24,6 @@ resource "aws_iam_role" "eks_cluster_role" {
   })
 }
 
-
-# Attach the AdministratorAccess policy to the EKS cluster roles
-resource "aws_iam_role_policy_attachment" "eks_cluster_admin" {
-  role       = aws_iam_role.eks_cluster_role.name
-  policy_arn =  "arn:aws:iam::aws:policy/AdministratorAccess"
-
-}
-
 # Attach the AmazonEKS_CNI_Policy policy to the EKS cluster role
 resource "aws_iam_role_policy_attachment" "eks_cluster_eks_cni" {
   role       = aws_iam_role.eks_cluster_role.name
@@ -43,5 +35,12 @@ resource "aws_iam_role_policy_attachment" "eks_cluster_eks_cni" {
 resource "aws_iam_role_policy_attachment" "eks_cluster_eks_worker" {
   role       = aws_iam_role.eks_cluster_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
+
+}
+
+# Attach the AmazonEC2ContainerRegistryReadOnly policy to the EKS cluster role
+resource "aws_iam_role_policy_attachment" "eks_cluster_ecr" {
+  role       = aws_iam_role.eks_cluster_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
 
 }
