@@ -44,3 +44,27 @@ resource "aws_iam_role_policy_attachment" "eks_cluster_ecr" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
 
 }
+
+resource "aws_iam_role_policy" "eks_node_volume_access" {
+  name = "eks-node-volume-access"
+  role = aws_iam_role.eks_cluster_role.name
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "ec2:CreateVolume",
+          "ec2:AttachVolume",
+          "ec2:DeleteVolume",
+          "ec2:DescribeInstances",
+          "ec2:DescribeVolumes",
+          "ec2:DescribeAvailabilityZones",
+          "ec2:CreateTags"
+        ]
+        Resource = "*"
+      }
+    ]
+  })
+}
