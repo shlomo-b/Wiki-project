@@ -23,10 +23,10 @@ module "iam_eks_role" {
 
 module "iam_eks_role_alb" {
   source    = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  role_name = "aws-alb-controller-role"
+  role_name = "aws-alb-controller-ingress-role"
   
   role_policy_arns = {
-    policy = "arn:aws:iam::aws:policy/AmazonEKSLoadBalancingPolicy"
+    policy = "arn:aws:iam::148088962203:policy/AWSLoadBalancerControllerIAMPolicy"
   }
   
   oidc_providers = {
