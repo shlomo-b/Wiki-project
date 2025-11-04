@@ -15,3 +15,4 @@ serviceAccount:
   name: external-dns-service-account
 sources:
   - ingress  
+  region: us-east-1  
