@@ -22,21 +22,20 @@ module "iam_eks_role" {
 
 # # role for aws load balancer controller ingress
 
-# module "iam_eks_role_alb" {
-#   source    = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-#   role_name = "aws-alb-controller-ingress-role"
-  
-#   role_policy_arns = {
-#     policy = "arn:aws:iam::148088962203:policy/AWSLoadBalancerControllerIAMPolicy"
-#   }
-  
-#   oidc_providers = {
-#     one = {
-#       provider_arn               =  module.eks.oidc_provider_arn
-#       namespace_service_accounts = ["aws-alb-controller:aws-alb-controller"]
-#     }
-#   }
-#   depends_on = [ 
-#     module.eks
-#    ]
-# }
+module "iam_eks_role_alb_controller" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
+  version = "5.39.1"
+
+  role_name = "aws-load-balancer-controller-role"
+
+  attach_load_balancer_controller_policy = true
+
+  oidc_providers = {
+    one = {
+      provider_arn               = module.eks.oidc_provider_arn
+      namespace_service_accounts = ["kube-system:aws-load-balancer-controller"] # ns:name
+    }
+  }
+
+  depends_on = [module.eks]
+}
