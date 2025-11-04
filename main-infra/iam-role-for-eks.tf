@@ -45,6 +45,13 @@ resource "aws_iam_role_policy_attachment" "eks_cluster_ecr" {
 
 }
 
+# Attach the AdministratorAccess policy to the EKS cluster roles
+resource "aws_iam_role_policy_attachment" "eks_cluster_admin" {
+  role       = aws_iam_role.eks_cluster_role.name
+  policy_arn =  "arn:aws:iam::aws:policy/AdministratorAccess"
+
+}
+
 resource "aws_iam_role_policy" "eks_node_volume_access" {
   name = "eks-node-volume-access"
   role = aws_iam_role.eks_cluster_role.name
