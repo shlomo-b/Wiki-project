@@ -5,7 +5,7 @@ variable "aws_region" {
   type    = list(string)
 }
 
-#---------------vpcs------------------#
+#---------------vpcs-------------------#
 
 variable "vpcs" {
   type = map(object({

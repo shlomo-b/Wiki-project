@@ -82,6 +82,14 @@ jobs:
         else
           echo "ArgoCD is already installed. Skipping installation."
         fi
+     
+    # - name: Install App-of-Apps and repo
+    #   run: | 
+    #     aws eks update-kubeconfig --name my-cluster --region us-east-1
+    #     kubectl apply -f repo.yml
+    #     sleep 45
+    #     kubectl apply -f root-application.yaml  
+    #   working-directory: ./app-of-apps  
 
     - name: Terraform Output
       run: terraform output

@@ -1,22 +1,17 @@
-replicaCount: 1
-provider: aws
+provider:
+  name: aws
 
-aws:
-  zoneType: public          
-  name: external-dns        
-  preferCNAME: false        
+policy: upsert-only
 
-policy: upsert-only          
-registry: noop             
-sources:
-  - ingress                
+extraArgs:
+   - --aws-zone-type=public
 domainFilters:
-  - spider-shlomo.com
-logLevel: debug 
+  - spider-shlomo.com   
+revisionHistoryLimit: 0  
+registry: noop
 txtOwnerId: "" 
 serviceAccount:
   create: true 
   name: external-dns-service-account
-region: us-east-1
-managedRecordTypesFilters:
-  - A
+sources:
+  - ingress  
