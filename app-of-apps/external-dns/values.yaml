@@ -5,6 +5,7 @@ policy: upsert-only
 
 extraArgs:
    - --aws-zone-type=public
+   - --aws-prefer-cname
 domainFilters:
   - spider-shlomo.com   
 revisionHistoryLimit: 0  
