@@ -1,9 +1,9 @@
 clusterName: my-cluster
 serviceAccount:
   create: true
-  name: aws-load-balancer-controller
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::148088962203:role/aws-alb-controller-ingress-role
+  # name: aws-load-balancer-controller
+  # annotations:
+  #   eks.amazonaws.com/role-arn: arn:aws:iam::148088962203:role/aws-alb-controller-ingress-role
 
 replicaCount: 1
 region: us-east-1
