@@ -45,7 +45,7 @@ sgs = {
           to_port     = 0
           protocol    = "-1"
           description = "all"
-          cidr_blocks = "84.228.161.67/32"
+          cidr_blocks = "94.159.136.66/32"
         }
         access_from_lan = {
           from_port   = 0
