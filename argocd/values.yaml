@@ -23,10 +23,10 @@ server:
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/target-type: ip
       alb.ingress.kubernetes.io/backend-protocol: HTTP
-      alb.ingress.kubernetes.io/security-groups: sg-00fe19f31662ab60d
-      alb.ingress.kubernetes.io/subnets: subnet-0afb72122b64f4a07,subnet-02ae7815f5c741302
+      alb.ingress.kubernetes.io/security-groups: sg-0df57b52bdfb0b9a2
+      alb.ingress.kubernetes.io/subnets: subnet-01650f398ab37389d,subnet-0bd9f3b6d22e46aeb
       alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":80}, {"HTTPS":443}]'
-      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:148088962203:certificate/9ba7867a-705a-4146-8cce-efca36ca6c78
+      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:148088962203:certificate/04883403-27eb-4f9c-be78-b20f5ac6c899
       alb.ingress.kubernetes.io/ssl-redirect: '443'
     aws:
       serviceType: ClusterIP
