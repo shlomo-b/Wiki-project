@@ -23,21 +23,21 @@ module "iam_eks_role" {
 # # role for aws load balancer controller ingress
 
 
-# data "aws_iam_policy_document" "alb_extra" {
-#   statement {
-#     sid     = "AllowDescribeListenerAttributes"
-#     effect  = "Allow"
-#     actions = [
-#       "elasticloadbalancing:DescribeListenerAttributes"
-#     ]
-#     resources = ["*"]
-#   }
-# }
+data "aws_iam_policy_document" "alb_extra" {
+  statement {
+    sid     = "AllowDescribeListenerAttributes"
+    effect  = "Allow"
+    actions = [
+      "elasticloadbalancing:DescribeListenerAttributes"
+    ]
+    resources = ["*"]
+  }
+}
 
-# resource "aws_iam_policy" "alb_extra" {
-#   name   = "AWSLoadBalancerControllerExtra"
-#   policy = data.aws_iam_policy_document.alb_extra.json
-# }
+resource "aws_iam_policy" "alb_extra" {
+  name   = "AWSLoadBalancerControllerExtra"
+  policy = data.aws_iam_policy_document.alb_extra.json
+}
 
 module "iam_eks_role_alb_controller" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
@@ -46,9 +46,9 @@ module "iam_eks_role_alb_controller" {
   role_name                              = "aws-load-balancer-controller-role"
   attach_load_balancer_controller_policy = true
 
-  # role_policy_arns = {
-  #   extra = aws_iam_policy.alb_extra.arn
-  # }
+  role_policy_arns = {
+    extra = aws_iam_policy.alb_extra.arn
+  }
 
   oidc_providers = {
     one = {
