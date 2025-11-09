@@ -22,19 +22,19 @@ module "iam_eks_role" {
 
 # # role for aws load balancer controller ingress
 
-# Small managed policy: grants permission to DescribeListenerAttributes for ALB
-resource "aws_iam_policy" "alb_extra" {
-  name   = "AWSLoadBalancerControllerExtra"
-  policy = jsonencode({
-    Version   = "2012-10-17",
-    Statement = [{
-      Sid      = "AllowDescribeListenerAttributes",
-      Effect   = "Allow",
-      Action   = ["elasticloadbalancing:DescribeListenerAttributes"],
-      Resource = ["*"]
-    }]
-  })
-}
+# # Small managed policy: grants permission to DescribeListenerAttributes for ALB
+# resource "aws_iam_policy" "alb_extra" {
+#   name   = "AWSLoadBalancerControllerExtra"
+#   policy = jsonencode({
+#     Version   = "2012-10-17",
+#     Statement = [{
+#       Sid      = "AllowDescribeListenerAttributes",
+#       Effect   = "Allow",
+#       Action   = ["elasticloadbalancing:DescribeListenerAttributes"],
+#       Resource = ["*"]
+#     }]
+#   })
+# }
 
 # IAM Role for the AWS Load Balancer Controller with built-in and extra policies
 module "iam_eks_role_alb_controller" {
@@ -45,9 +45,9 @@ module "iam_eks_role_alb_controller" {
   attach_load_balancer_controller_policy = true
   attach_load_balancer_controller_targetgroup_binding_only_policy = true
 
-  role_policy_arns = {
-    extra = aws_iam_policy.alb_extra.arn
-  }
+  # role_policy_arns = {
+  #   extra = aws_iam_policy.alb_extra.arn
+  # }
 
   oidc_providers = {
     one = {
