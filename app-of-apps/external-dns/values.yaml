@@ -1,6 +1,11 @@
 provider:
   name: aws
 
+serviceAccount:
+  create: true
+  name: external-dns
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::148088962203:role/external-dns-role
 policy: upsert-only
 
 extraArgs:
@@ -11,9 +16,6 @@ domainFilters:
 revisionHistoryLimit: 0  
 registry: noop
 txtOwnerId: "" 
-serviceAccount:
-  create: true 
-  name: external-dns-service-account
 sources:
   - ingress  
 env:
