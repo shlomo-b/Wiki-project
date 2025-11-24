@@ -21,10 +21,10 @@ variable "vpcs" {
 
 variable "sgs" {
   type = map(object({
-    tags = map(string)
-    vpc_key                   = string
-    description               = string
-    ingress_cidr_blocks       = list(string)
+    tags                = map(string)
+    vpc_key             = string
+    description         = string
+    ingress_cidr_blocks = list(string)
     ingress_with_cidr_blocks = map(object({
       from_port   = number
       to_port     = number
@@ -40,8 +40,8 @@ variable "sgs" {
 
 variable "acm" {
   type = map(object({
-    domain_name     = list(string)
-    tags            = map(string)
+    domain_name = list(string)
+    tags        = map(string)
   }))
 }
 
@@ -61,36 +61,36 @@ variable "route53" {
 
 variable "cluster_name" {
   default = "my-cluster"
-  type = string
+  type    = string
 }
 
 variable "cluster_version" {
   default = "1.34"
-  type = string
+  type    = string
 }
 
 variable "cluster_service_ipv4_cidr" {
   default = "10.200.0.0/16"
-  type = string
+  type    = string
 }
 
 variable "instance_types" {
   default = ["m5.large"]
-  type = list(string)
+  type    = list(string)
 }
 
 variable "min_size" {
   default = 2
-  type = number
+  type    = number
 }
 
 variable "max_size" {
   default = 5
-  type = number
+  type    = number
 }
 
 variable "desired_size" {
   default = 2
-  type = number
-  
+  type    = number
+
 }

@@ -5,7 +5,7 @@
 #   name_prefix = "wigi-waf"
 #   create_alb_association = false
 #   allow_default_action = false # block all the request https
-  
+
 #    # it's for show the logs of allow or block
 #     visibility_config = {
 #     cloudwatch_metrics_enabled = false
@@ -115,7 +115,7 @@
 # resource "aws_wafv2_regex_pattern_set" "block_wildcard" {
 #   name        = "block_all_after_slash"
 #   scope       = "REGIONAL"
-  
+
 #   regular_expression {
 #     # block all after the / 
 #     regex_string = "^/.+"

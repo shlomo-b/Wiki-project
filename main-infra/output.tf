@@ -28,7 +28,7 @@ output "dns_a_record_route53" {
 # }
 
 output "vpc_public_subnets" {
-  value = { for k, v in module.vpc : k => v.public_subnets }
+  value       = { for k, v in module.vpc : k => v.public_subnets }
   description = "vpcs"
 }
 
