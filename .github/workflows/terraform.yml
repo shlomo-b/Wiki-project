@@ -46,6 +46,10 @@ jobs:
         terraform version
         aws --version
       working-directory: ./main-infra
+    
+    - name: Terraform Format
+      run: terraform fmt -check    
+      working-directory: ./main-infra
 
     - name: Terraform Init
       run: |
@@ -58,7 +62,7 @@ jobs:
 
     - name: Terraform Validate
       run: terraform validate
-      working-directory: ./main-infra  
+      working-directory: ./main-infra
        
     - name: Terraform Plan
       run: terraform plan -input=false

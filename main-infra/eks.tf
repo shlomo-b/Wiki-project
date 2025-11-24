@@ -2,16 +2,16 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 20.31"
 
-  cluster_name    = var.cluster_name
-  cluster_version = var.cluster_version
-  cluster_service_ipv4_cidr = var.cluster_service_ipv4_cidr
-  cluster_endpoint_public_access  = true
+  cluster_name                   = var.cluster_name
+  cluster_version                = var.cluster_version
+  cluster_service_ipv4_cidr      = var.cluster_service_ipv4_cidr
+  cluster_endpoint_public_access = true
 
   # Disable creation of security groups
   create_cluster_security_group = false
   create_node_security_group    = false
-  cluster_security_group_id = module.sgs["vpc-one"].security_group_id
-  
+  cluster_security_group_id     = module.sgs["vpc-one"].security_group_id
+
   cluster_addons = {
     coredns                = {}
     eks-pod-identity-agent = {}
@@ -20,24 +20,24 @@ module "eks" {
     aws-ebs-csi-driver     = {}
   }
 
-    vpc_id                   =  module.vpc["vpc-one"].vpc_id
-    subnet_ids               = [
-        module.vpc["vpc-one"].public_subnets[0],
-        module.vpc["vpc-one"].public_subnets[1]
-    ]
-    control_plane_subnet_ids = [
-        module.vpc["vpc-one"].private_subnets[0],
-        module.vpc["vpc-one"].private_subnets[1]
-    ]
-    
+  vpc_id = module.vpc["vpc-one"].vpc_id
+  subnet_ids = [
+    module.vpc["vpc-one"].public_subnets[0],
+    module.vpc["vpc-one"].public_subnets[1]
+  ]
+  control_plane_subnet_ids = [
+    module.vpc["vpc-one"].private_subnets[0],
+    module.vpc["vpc-one"].private_subnets[1]
+  ]
+
   # EKS Managed Node Group(s) 
   eks_managed_node_group_defaults = {
     instance_types = var.instance_types
 
     # create self iam role and give access to node group
     create_iam_role = false
-    iam_role_name =  aws_iam_role.eks_cluster_role.name
-    iam_role_arn  =  aws_iam_role.eks_cluster_role.arn
+    iam_role_name   = aws_iam_role.eks_cluster_role.name
+    iam_role_arn    = aws_iam_role.eks_cluster_role.arn
   }
 
   eks_managed_node_groups = {
@@ -45,9 +45,9 @@ module "eks" {
       ami_type       = "AL2023_x86_64_STANDARD"
       instance_types = var.instance_types
 
-      min_size     = var.min_size
-      max_size     = var.max_size
-      desired_size = var.desired_size
+      min_size               = var.min_size
+      max_size               = var.max_size
+      desired_size           = var.desired_size
       vpc_security_group_ids = [module.sgs["vpc-one"].security_group_id]
     }
   }
@@ -74,7 +74,7 @@ module "eks" {
     }
   }
 
-  tags = { 
+  tags = {
     Environment = "dev"
     Terraform   = "true"
   }
